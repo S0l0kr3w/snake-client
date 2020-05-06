@@ -10,12 +10,28 @@ const connect = function() {
   });
   // interpret incoming data as text
   conn.on('data', (data) => {
-    console.log('Server says: ', data);
-    conn.on('connect', () => {
-      conn.write('Hello from client!');
-  });             
-  
+    console.log('Server says: ', data); 
+    // conn.write("Move: up");
+    // conn.write("Move: right");
+    // conn.write("Move: up");
+    // conn.write("Move: right");
   });
+
+  conn.on('connect', (data) => {
+    console.log("Successfully connected to the game server");
+    conn.write("Name: JJJ");
+    
+    setInterval(() => conn.write("Move: up"), 50);
+    // conn.write("Move: right");
+    // conn.write("Move: up");
+    // conn.write("Move: right");
+    
+  });
+
+
+
+
+
   conn.setEncoding('utf8'); 
   
   return conn;
